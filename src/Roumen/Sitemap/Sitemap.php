@@ -69,15 +69,15 @@ class Sitemap
      * @param string $freq
      * @param array  $images
      * @param string $title
-     * @param string $translation
+     * @param string $translations
      *
      * @return void
      */
-    public function add($loc, $lastmod = null, $priority = null, $freq = null, $images = array(), $title = null, $translation = array())
+    public function add($loc, $lastmod = null, $priority = null, $freq = null, $images = array(), $title = null, $translations = array())
     {
 
         if ($this->model->getEscaping())
-        {
+        { 
             $loc = htmlentities($loc, ENT_XML1);
 
             if ($title != null) htmlentities($title, ENT_XML1);
@@ -93,11 +93,16 @@ class Sitemap
                 }
             }
 
-            if ($translation)
+            if ($translations)
             {
-                foreach ($translation as $key => $value)
                 {
-                    $translation[$key] = htmlentities($value, ENT_XML1);
+                    foreach($translations as $translation)
+                    {
+                        foreach ($translation as $key => $value)
+                        {
+                            $translation[$key] = htmlentities($value, ENT_XML1);
+                        }
+                    }
                 }
             }
         }
@@ -111,7 +116,7 @@ class Sitemap
                     'freq' => $freq,
                     'images' => $images,
                     'title' => $title,
-                    'translation' => $translation
+                    'translation' => $translations
                 )
         );
     }
