@@ -77,7 +77,7 @@ class Sitemap
     {
 
         if ($this->model->getEscaping())
-        { 
+        {
             $loc = htmlentities($loc, ENT_XML1);
 
             if ($title != null) htmlentities($title, ENT_XML1);
@@ -116,7 +116,7 @@ class Sitemap
                     'freq' => $freq,
                     'images' => $images,
                     'title' => $title,
-                    'translation' => $translations
+                    'translations' => $translations
                 )
         );
     }
